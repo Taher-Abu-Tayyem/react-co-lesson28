@@ -1,0 +1,164 @@
+.edit-task {
+  min-height: calc(100vh - 160px);
+  max-width: 620px;
+  margin: 0 auto;
+}
+/* Title Section */
+.edit-task .title {
+  margin-bottom: 30px;
+}
+.edit-task .title h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 0;
+}
+.edit-task .title-input {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  outline: none;
+  padding: 5px;
+}
+.light .edit-task .title-input {
+  color: #000000;
+}
+.edit-task .fa-edit {
+  font-size: 18px;
+  color: #19a8e3;
+  cursor: pointer;
+}
+
+.edit-task .fa-edit:hover {
+  color: #197399;
+}
+/* Sub Task Section */
+.edit-task section.sub-task {
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 70px 20px 0 20px;
+}
+.edit-task .parent-time {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.edit-task .time {
+  font-size: 12px;
+  color: rgb(164, 213, 255);
+  margin: 0;
+}
+.light .edit-task .time {
+  color: #475569;
+}
+.edit-task .parent-time > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.edit-task #checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #19a8e3;
+}
+.edit-task label {
+  font-size: 17px;
+  margin: 0;
+  cursor: pointer;
+}
+.light .edit-task label {
+  color: #000000;
+}
+.edit-task .card-task {
+  box-shadow: 0 5px 30px 0 rgb(0 0 0 / 15%);
+  background-color: rgb(65, 71, 84);
+  padding: 16px;
+  border-radius: 5px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 11px;
+}
+.edit-task .card-task:hover {
+  background-color: rgb(74, 82, 97);
+  border-left: 4px solid #19a8e3;
+}
+.light .edit-task .card-task {
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.light .edit-task .card-task:hover {
+  background-color: #f9fafb;
+  border-left: 4px solid #19a8e3;
+}
+.edit-task .card-task p {
+  margin: 0;
+  flex: 1;
+}
+.light .edit-task .card-task p {
+  color: #000000;
+}
+.edit-task .fa-trash {
+  color: rgb(237, 181, 181);
+  cursor: pointer;
+  padding-right: 5px;
+}
+.edit-task .fa-trash:hover {
+  color: #ff6b6b;
+}
+.light .edit-task .fa-trash {
+  color: #dc2626;
+}
+.light .edit-task .fa-trash:hover {
+  color: #b91c1c;
+}
+/* Buttons Section */
+.edit-task section.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+  padding: 10px 0;
+}
+.edit-task .add-more-btn {
+  background-color: #19a8e3;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.edit-task .add-more-btn:hover {
+  background-color: #197399;
+}
+.edit-task .add-more-btn i {
+  margin-left: 5px;
+}
+.edit-task .delete {
+  background-color: rgba(237, 181, 181, 0.2);
+  color: rgb(237, 181, 181);
+  font-size: 16px;
+  padding: 10px 20px;
+  border: 1px solid rgba(237, 181, 181, 0.3);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.edit-task .delete:hover {
+  background-color: rgba(237, 181, 181, 0.3);
+}
+.light .edit-task .delete {
+  background-color: rgba(220, 38, 38, 0.1);
+  color: #dc2626;
+  border-color: rgba(220, 38, 38, 0.3);
+}
+.light .edit-task .delete:hover {
+  background-color: rgba(220, 38, 38, 0.2);
+}

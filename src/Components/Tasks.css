@@ -1,0 +1,59 @@
+.task .layout  {
+  display: flex;
+  /* gap: 30px; */
+  align-items: stretch;
+}
+.task .btns{
+  flex-direction: column;
+  gap: 15px;
+  margin: 80px;
+}
+/* filtered data */
+.task .btns {
+  /* border: 2px solid red; */
+}
+.task .btns button {
+  background-color: #19a8e3;
+  border-radius: 8px;
+  font-size: 12px;
+  color: white;
+  margin-right: 15px;
+  border: none;
+  padding: 10px 8px;
+}
+
+.task .btns button:hover {
+  background-color: #1177a2;
+  font-size: 13px;
+}
+
+.task .btns select {
+  background-color: #19a8e3;
+  font-size: 12px;
+  color: white;
+  margin-right: 15px;
+  padding: 5px 8px;
+}
+
+/* all tasks */
+.task .all-task {
+  /* border: 2px solid red; */
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.task .all-task .one-task {
+  border: 2px solid white;
+  margin: 40px 20px;
+  width: 280px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.flex  {
+display: flex;
+}
