@@ -1,23 +1,23 @@
-import React from 'react'
-import "./Model.css"
-export default function Model({closeModel,children}) {
+import { Helmet } from "react-helmet-async";
+import "./Model.css";
+export default function Model({closeModel, children}) {
   return (
-      
-        <div className="parent-model">
-          <form className={`model`}>
-          <div
-            className="close"
-            onClick={(e) => {
-              console.log("close form");
-               closeModel();
-             }}
-          >
-            X
-          </div>
-
-        {children}
-        </form>
-        </div>
-        
+<div className="parent-model">
+    <Helmet>
+          <title>Model Page</title>
+        </Helmet>
+  <form className={`model`}>
+            <div
+              className="close"
+              onClick={() => {
+            closeModel()
+              }}
+            >
+              X
+            </div>
+            {children}
+            
+          </form>
+</div>
   )
 }
