@@ -3,11 +3,12 @@ import "./Tasks.css";
 import { Helmet } from "react-helmet-async";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
-import Navbar from "./Navbar";
+import Navbar from "../../Components/Navbar";
 import Model from "shared/Model";
 import { doc, setDoc } from "firebase/firestore";
 import ReactLoading from "react-loading";
-import { auth, db } from "../FireBase/Config";
+import { auth, db } from "../../FireBase/Config";
+import TaskModel from "./TaskModel";
 
 export default function Tasks() {
   const [user, loading, error] = useAuthState(auth);
@@ -17,12 +18,43 @@ export default function Tasks() {
   const [subTask, setSubTask] = useState("");
   const [array, setArray] = useState([]);
   const [showLoading, setShowLoading] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
 
   const closeModel = () => setShowModel(false);
 
-  const addBTN = () => {
-    setArray((prev) => [...prev, subTask]);
+  const addBTN = (e) => {
+    e.preventDefault();
+    if(!array.includes(subTask)){
+      array.push(subTask);
+    }
+    
+    console.log(array);
     setSubTask("");
+  };
+  const titleinput = (e) => {
+    setTitle(e.target.value);
+  };
+  const detailsinput = (e) => {
+    setSubTask(e.target.value);
+  };
+  const submitBTN = async (eo) => {
+    eo.preventDefault();
+    setShowLoading(true);
+    const idTask = new Date().getTime();
+    await setDoc(doc(db, user.uid, `${idTask}`), {
+      id: idTask,
+      titleTask: title,
+      details: array,
+    });
+    setShowLoading(false);
+    setArray([]);
+    setTitle("");
+    setShowModel(false);
+    setShowMessage(true);
+    setTimeout(() => {
+      setShowMessage(false);
+    }, 5000);
+    console.log("done");
   };
 
   const navigate = useNavigate();
@@ -77,81 +109,19 @@ export default function Tasks() {
               <button>Newest first</button>
               <button>Oldest first</button>
 
-              <button
-                className="add-task"
-                onClick={() => setShowModel(true)}
-              >
+              <button className="add-task" onClick={() => setShowModel(true)}>
                 Add Task <i className="fa fa-solid fa-plus"></i>
               </button>
+              <p
+                className="success-message"
+                style={{ right: showMessage ? "10vw" : "100vw" }}
+              >
+                Task added successfully !{" "}
+                <i className="fa fa-solid fa-check"></i>
+              </p>
 
               {showModel && (
-                <Model closeModel={closeModel}>
-                  <input
-                    type="text"
-                    placeholder="Task Title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                  />
-
-                  <div>
-                    <input
-                      placeholder="Sub Task"
-                      value={subTask}
-                      onChange={(e) => setSubTask(e.target.value)}
-                    />
-
-                    <button
-                      className="add-task"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        addBTN();
-                      }}
-                    >
-                      Add Sub Task
-                    </button>
-                  </div>
-
-                  <ul>
-                    {array.map((item, idx) => (
-                      <li key={idx}>{item}</li>
-                    ))}
-                  </ul>
-
-                  <button
-                    className="add-task"
-  onClick={async () => {
-  try {
-    console.log("START");
-
-    const ref = doc(db, "test", "123");
-
-    console.log(ref);
-
-    await setDoc(ref, {
-      name: "Taher",
-      time: Date.now(),
-    });
-
-    console.log("SUCCESS");
-
-  } catch (err) {
-    console.error("FIREBASE ERROR:", err);
-  }
-}}
-                    
-                  >
-                    {showLoading ? (
-                      <ReactLoading
-                        type={"spokes"}
-                        color={"white"}
-                        height={20}
-                        width={20}
-                      />
-                    ) : (
-                      "Add Task"
-                    )}
-                  </button>
-                </Model>
+                <TaskModel closeModel={closeModel} title={title} subTask={subTask} array={array} showLoading={showLoading} addBTN={addBTN} titleinput={titleinput} detailsinput={detailsinput} submitBTN={submitBTN} />
               )}
             </section>
 

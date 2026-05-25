@@ -3,7 +3,7 @@ import {createBrowserRouter, RouterProvider } from "react-router-dom";
 import './App.css';
 import Home from './Components/Home';
 import About from './Components/About';
-import Tasks from './Components/Tasks';
+import Tasks from './Pages/Task/Tasks';
 import Services from './Components/Services';
 import Datta from './Components/Data';
 
@@ -16,7 +16,7 @@ import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
 import Content from "./Components/Content";
 import Error404 from "./Pages/Error404";
-import EditTask from "./Components/EditTask";
+import EditTask from "./Pages/EditTask/EditTask";
 
 const router = createBrowserRouter([
   {

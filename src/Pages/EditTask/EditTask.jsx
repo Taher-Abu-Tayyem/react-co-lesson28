@@ -1,7 +1,7 @@
 import "./EditTask.css";
 
 import { Helmet } from "react-helmet-async";
-import Navbar from "./Navbar";
+import Navbar from "../../Components/Navbar";
 const EditTask = () => {
   return (
     <div>
