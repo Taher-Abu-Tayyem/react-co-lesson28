@@ -50,7 +50,7 @@ const router = createBrowserRouter([
     path: "/Data",
     element: <Datta />,
   },  {
-    path: "/EditTask",
+    path: "/EditTask/:StringId",
     element: <EditTask />,
   },
    {

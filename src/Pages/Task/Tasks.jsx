@@ -4,30 +4,32 @@ import { Helmet } from "react-helmet-async";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../Components/Navbar";
-import Model from "shared/Model";
 import { doc, setDoc } from "firebase/firestore";
-import ReactLoading from "react-loading";
 import { auth, db } from "../../FireBase/Config";
 import TaskModel from "./TaskModel";
-
+import AllTaskSection from "./AllTaskSection";
 export default function Tasks() {
+ 
   const [user, loading, error] = useAuthState(auth);
-
   const [showModel, setShowModel] = useState(false);
   const [title, setTitle] = useState("");
   const [subTask, setSubTask] = useState("");
   const [array, setArray] = useState([]);
   const [showLoading, setShowLoading] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
-
-  const closeModel = () => setShowModel(false);
+  const [status, setStatus] = useState(false);
+  const closeModel = () => {
+    setShowModel(false);
+    setTitle("");
+    setArray([]);
+  };
 
   const addBTN = (e) => {
     e.preventDefault();
-    if(!array.includes(subTask)){
+    if (!array.includes(subTask)) {
       array.push(subTask);
     }
-    
+
     console.log(array);
     setSubTask("");
   };
@@ -45,6 +47,7 @@ export default function Tasks() {
       id: idTask,
       titleTask: title,
       details: array,
+      completed: status,
     });
     setShowLoading(false);
     setArray([]);
@@ -53,7 +56,7 @@ export default function Tasks() {
     setShowMessage(true);
     setTimeout(() => {
       setShowMessage(false);
-    }, 5000);
+    }, 4000);
     console.log("done");
   };
 
@@ -121,25 +124,23 @@ export default function Tasks() {
               </p>
 
               {showModel && (
-                <TaskModel closeModel={closeModel} title={title} subTask={subTask} array={array} showLoading={showLoading} addBTN={addBTN} titleinput={titleinput} detailsinput={detailsinput} submitBTN={submitBTN} />
+                <TaskModel
+                  closeModel={closeModel}
+                  title={title}
+                  subTask={subTask}
+                  array={array}
+                  showLoading={showLoading}
+                  addBTN={addBTN}
+                  titleinput={titleinput}
+                  detailsinput={detailsinput}
+                  submitBTN={submitBTN}
+                />
               )}
             </section>
 
             {/* tasks list */}
-            <section className="tasks-wrapper">
-              <section className="flex all-task">
-                <article dir="auto" className="one-task">
-                  <Link to="/EditTask">
-                    <h2>New Tasks</h2>
-                    <ul>
-                      <li>Sub task1</li>
-                      <li>Sub task2</li>
-                      <p className="time">a day ago</p>
-                    </ul>
-                  </Link>
-                </article>
-              </section>
-            </section>
+
+            <AllTaskSection user={user} />
           </section>
         </main>
       </>
