@@ -8,11 +8,13 @@ import TitleSection from "./TitleSection";
 import ButtonsSection from "./ButtonsSection";
 import SubTaskSection from "./SubTaskSection";
 import{useParams} from "react-router-dom";
-import { doc, updateDoc } from "firebase/firestore";
+import { arrayRemove, doc, updateDoc } from "firebase/firestore";
+import { useDocument } from "react-firebase-hooks/firestore";
 
 
 const EditTask = () => {
    const [user,loading,error] = useAuthState(auth);
+   
   let {StringId} = useParams();
   const titleInput = async (e) => {
               await updateDoc(doc(db, user.uid, StringId), {
@@ -30,14 +32,19 @@ const EditTask = () => {
         });
       }
     }
-    const trashIcon = (e) => {
+    const trashIcon = async (item) => {
+      await updateDoc(doc(db, user.uid, StringId), {
+        details:arrayRemove(item)
+      });
       
     }
-    const addMoreBtn = (e) => {
+    const addMoreBtn = async (e) => {
       
+    
     }
-    const deleteBtn = (e) => {
-      
+
+      const deleteBtn = async (e) => {
+
     }
     
     
@@ -79,9 +86,9 @@ const EditTask = () => {
        {/* title  */}
        <TitleSection user={user} id={StringId} titleInput={titleInput} />
        {/* sub task */}
-       <SubTaskSection user={user} id={StringId} completedCheckBox={completedCheckBox} />
+       <SubTaskSection user={user} id={StringId} completedCheckBox={completedCheckBox} trashIcon={trashIcon}  />
        {/* buttons */}
-       <ButtonsSection user={user} id={StringId} />
+       <ButtonsSection user={user} id={StringId} addMoreBtn={addMoreBtn} deleteBtn={deleteBtn} />
       </div>
     </div>
     )

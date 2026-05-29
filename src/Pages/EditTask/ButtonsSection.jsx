@@ -3,7 +3,7 @@ import { useDocument } from 'react-firebase-hooks/firestore';
 import { doc } from "firebase/firestore";
 import { db } from '../../FireBase/Config';
 
-export default function ButtonsSection({user,id}) {
+export default function ButtonsSection({user,id,addMoreBtn,deleteBtn}) {
   const [value, loading, error] = useDocument(doc(db, user.uid, id));
 
   if (loading) {
@@ -27,15 +27,12 @@ export default function ButtonsSection({user,id}) {
   if (value) {
   return (
     
-      <section className="center mtt">
-          <button className="add-more-btn">
-            Add more <i className="fas fa-plus"></i>
-          </button>
-
+  <section className="center mtt">
+          
           <div>
             <button className="delete">Delete task</button>
           </div>
-      </section>
+        </section>
     
   )
 }}

@@ -162,3 +162,107 @@
 .light .edit-task .delete:hover {
   background-color: rgba(220, 38, 38, 0.2);
 }
+
+/* Buttons Section */
+.edit-task section.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+  width: 100%;
+}
+.edit-task .add-more-btn {
+  background-color: #19a8e3;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.edit-task .add-more-btn:hover {
+  background-color: #197399;
+}
+.edit-task .add-more-btn i {
+  margin-left: 5px;
+}
+.edit-task .delete {
+  background-color: rgba(237, 181, 181, 0.2);
+  color: rgb(237, 181, 181);
+  font-size: 16px;
+  padding: 10px 20px;
+  border: 1px solid rgba(237, 181, 181, 0.3);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.edit-task .delete:hover {
+  background-color: rgba(237, 181, 181, 0.3);
+}
+.light .edit-task .delete {
+  background-color: rgba(220, 38, 38, 0.1);
+  color: #dc2626;
+  border-color: rgba(220, 38, 38, 0.3);
+}
+.light .edit-task .delete:hover {
+  background-color: rgba(220, 38, 38, 0.2);
+}
+/* Add New Task Section */
+.edit-task .add-new-task {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 20px;
+  padding: 16px;
+  background-color: rgb(65, 71, 84);
+  border-radius: 6px;
+}
+.light .edit-task .add-new-task {
+  background-color: #ffffff;
+}
+.edit-task .add-task {
+  flex: 1;
+  padding: 10px 14px;
+  background-color: rgb(45, 50, 60);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  color: white;
+  font-size: 14px;
+  outline: none;
+}
+.light .edit-task .add-task {
+  background-color: #f8f9fa;
+  border: 1px solid #e2e8f0;
+  color: #000000;
+}
+.edit-task .add-new-task button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.edit-task .add-new-task .add {
+  background-color: #19a8e3;
+  color: white;
+}
+.edit-task .add-new-task .add:hover {
+  background-color: #197399;
+}
+.edit-task .add-new-task .cancel {
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.edit-task .add-new-task .cancel:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.light .edit-task .add-new-task .cancel {
+  color: #64748b;
+  border-color: #cbd5e1;
+}
+.light .edit-task .add-new-task .cancel:hover {
+  background-color: #f1f5f9;
+}
