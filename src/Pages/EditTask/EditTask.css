@@ -209,7 +209,7 @@
   background-color: rgba(220, 38, 38, 0.2);
 }
 /* Add New Task Section */
-.edit-task .add-new-task {
+.edit-task .add-new-task  {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -218,6 +218,7 @@
   padding: 16px;
   background-color: rgb(65, 71, 84);
   border-radius: 6px;
+  animation: subtask 0.9s ease;
 }
 .light .edit-task .add-new-task {
   background-color: #ffffff;
@@ -265,4 +266,10 @@
 }
 .light .edit-task .add-new-task .cancel:hover {
   background-color: #f1f5f9;
+}
+/***   ADD SUB TASK       ***/
+@keyframes subtask {
+0% {scale: 0;}
+50% { scale: 1.3;}
+100% { scale: 1;}
 }

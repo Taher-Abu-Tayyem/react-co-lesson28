@@ -1,6 +1,6 @@
 import React from "react";
 import { useDocument } from "react-firebase-hooks/firestore";
-import { doc, updateDoc } from "firebase/firestore";
+import { deleteField, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../FireBase/Config";
 export default function TitleSection({ user, id, titleInput }) {
   const [value, loading, error] = useDocument(doc(db, user.uid, id));
@@ -36,6 +36,14 @@ export default function TitleSection({ user, id, titleInput }) {
             }}
           />
           <i className="fas fa-edit"></i>
+          <button className="btn delete" onClick={
+            async (e) => {             await updateDoc(doc(db, user.uid, id), {
+            titleTask: deleteField()
+});
+
+            }}>
+            Delete
+          </button>
         </h1>
       </section>
     );
