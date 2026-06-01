@@ -29,6 +29,7 @@ export default function TitleSection({ user, id, titleInput }) {
       <section className="title center">
         <h1>
           <input
+            style={{ textDecoration: value.data().completed ? "line-through wavy red" : "none" }}
             ref={inputElement}
             value={value.data().titleTask || ""}
             className="title-input center"

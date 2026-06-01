@@ -33,6 +33,7 @@ export default function ButtonsSection({user,id,deleteBtn}) {
           <div>
             <button className="delete" onClick={() => {
               deleteBtn();
+              
             }
             }>
               Delete task
