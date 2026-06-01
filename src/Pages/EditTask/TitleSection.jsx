@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { deleteField, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../FireBase/Config";
 export default function TitleSection({ user, id, titleInput }) {
   const [value, loading, error] = useDocument(doc(db, user.uid, id));
+  const inputElement = useRef(null);
 
   if (loading) {
     return (
@@ -28,6 +29,7 @@ export default function TitleSection({ user, id, titleInput }) {
       <section className="title center">
         <h1>
           <input
+            ref={inputElement}
             value={value.data().titleTask || ""}
             className="title-input center"
             type="text"
@@ -35,15 +37,17 @@ export default function TitleSection({ user, id, titleInput }) {
               titleInput(e);  
             }}
           />
-          <i className="fas fa-edit"></i>
-          <button className="btn delete" onClick={
+          <i className="fas fa-edit" onClick={() => {
+            inputElement.current.focus();
+          }}></i>
+          {/* <button className="btn delete" onClick={
             async (e) => {             await updateDoc(doc(db, user.uid, id), {
             titleTask: deleteField()
 });
 
             }}>
             Delete
-          </button>
+          </button> */}
         </h1>
       </section>
     );
