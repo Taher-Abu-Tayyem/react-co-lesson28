@@ -27,6 +27,7 @@ export default function AllTaskSection({ user }) {
   if (value) {
     return (
       <section className="all-task">
+        {value.docs.length === 0 && <h1>Gongratulation you have no tasks.</h1>}
         {value.docs.map((item) => {
           return (
             <article key={item.id} dir="auto" className="one-task">
