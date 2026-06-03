@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { collection } from "firebase/firestore";
+import { collection, orderBy, query } from "firebase/firestore";
 import { db } from "../../FireBase/Config.jsx";
 
 import Moment from "react-moment";
 export default function AllTaskSection({ user }) {
-  const [value, loading, error] = useCollection(collection(db, user.uid));
+  const [value, loading, error] = useCollection(
+  query(collection(db, user.uid),orderBy("id", "desc")));
   if (loading) {
     return (
       <div>
@@ -31,7 +32,7 @@ export default function AllTaskSection({ user }) {
         {value.docs.map((item) => {
           return (
             <article key={item.id} dir="auto" className="one-task">
-              <Link to={`/EditTask/${item.data().id}`}>
+              <Link className="task-link" to={`/EditTask/${item.data().id}`}>
                 <h2>{item.data().titleTask}</h2>
                 <ul>
                   {item.data().details.map((item, index) => {

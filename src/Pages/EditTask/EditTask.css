@@ -273,3 +273,11 @@
 50% { scale: 1.3;}
 100% { scale: 1;}
 }
+
+.all-task .task-link {
+display: flex;
+height: 100%;
+flex-direction: column;
+justify-content: center;
+}
+   
