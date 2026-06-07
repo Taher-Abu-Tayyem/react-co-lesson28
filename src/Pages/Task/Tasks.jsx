@@ -102,7 +102,7 @@ export default function Tasks() {
         <main className="task">
           <section className="layout">
             {/* filtered data */}
-            <section className="btns flex">
+          {/*   <section className="btns flex">
               <select id="options">
                 <option value="">All Tasks</option>
                 <option value="">Completed</option>
@@ -137,10 +137,36 @@ export default function Tasks() {
                 />
               )}
             </section>
-
+ */}
             {/* tasks list */}
 
             <AllTaskSection user={user} />
+            <section className="btns add-btn-section">
+              <button className="add-task" onClick={() => setShowModel(true)}>
+                      Add Task <i className="fa fa-solid fa-plus"></i>
+                    </button>
+                    <p
+                      className="success-message"
+                      style={{ right: showMessage ? "10vw" : "100vw" }}
+                    >
+                      Task added successfully !{" "}
+                      <i className="fa fa-solid fa-check"></i>
+                    </p>
+      
+                    {showModel && (
+                      <TaskModel
+                        closeModel={closeModel}
+                        title={title}
+                        subTask={subTask}
+                        array={array}
+                        showLoading={showLoading}
+                        addBTN={addBTN}
+                        titleinput={titleinput}
+                        detailsinput={detailsinput}
+                        submitBTN={submitBTN}
+                      />
+                    )}
+            </section>
           </section>
         </main>
       </>
