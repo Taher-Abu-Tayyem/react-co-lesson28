@@ -11,7 +11,7 @@ export default function AllTaskSection({ user }) {
  query(collection(db, user.uid), orderBy("id"))
   );
   const [value, loading, error] = useCollection(data);
-
+  const [selectedValue, setSelectedValue] = useState("a");
   if (loading) {
     return (
       <div>
@@ -34,14 +34,17 @@ export default function AllTaskSection({ user }) {
     return (
       <>
         <section className="btns flex">
-          <select onChange={(eo) => {
+          <select value={selectedValue} onChange={(eo) => {
             console.log(eo.target.value);
             if (eo.target.value === "a") {
-              setData(query(collection(db, user.uid),where("completed", "==", false), orderBy("id")))
+              setSelectedValue("a");
+              setData(query(collection(db, user.uid), orderBy("id")))
             }else if (eo.target.value === "b") {
-              setData(query(collection(db, user.uid),where("completed", "==", true), orderBy("id")))
+              setSelectedValue("b");
+              setData(query(collection(db, user.uid),where("completed", "==", true)))
             }else if (eo.target.value === "c") {
-              setData(query(collection(db, user.uid),where("completed", "==", false), orderBy("id")))
+              setSelectedValue("c");
+              setData(query(collection(db, user.uid),where("completed", "==", false),orderBy("completed")))
             }
           }
           } id="options">
@@ -50,6 +53,7 @@ export default function AllTaskSection({ user }) {
             <option value="c">Not Completed</option>
           </select>
 
+  { selectedValue === "a" && <div>
           <button
             style={{ opacity: fullOpacity ? 0.5 : 1 }}
             onClick={() => {
@@ -77,6 +81,7 @@ export default function AllTaskSection({ user }) {
           >
             Oldest first
           </button>
+      </div>}
         </section>
 
         <section className="all-task">
