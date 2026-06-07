@@ -6,10 +6,17 @@ import { db } from "../../FireBase/Config.jsx";
 import Moment from "react-moment";
 import { useState } from "react";
 export default function AllTaskSection({ user }) {
-  const [fullOpacity, setfullOpacity] = useState(false);
-  const [data, setData] = useState(
- query(collection(db, user.uid), orderBy("id"))
+  const allTasks = query(collection(db, user.uid), orderBy("id"));
+  const completedTasks = query(
+    collection(db, user.uid),
+    where("completed", "==", true)
   );
+  const notCompletedTasks = query(
+    collection(db, user.uid),
+    where("completed", "==", false)
+  );
+  const [fullOpacity, setfullOpacity] = useState(false);
+  const [data, setData] = useState(allTasks);
   const [value, loading, error] = useCollection(data);
   const [selectedValue, setSelectedValue] = useState("a");
   if (loading) {
@@ -34,54 +41,67 @@ export default function AllTaskSection({ user }) {
     return (
       <>
         <section className="btns flex">
-          <select value={selectedValue} onChange={(eo) => {
-            console.log(eo.target.value);
-            if (eo.target.value === "a") {
-              setSelectedValue("a");
-              setData(query(collection(db, user.uid), orderBy("id")))
-            }else if (eo.target.value === "b") {
-              setSelectedValue("b");
-              setData(query(collection(db, user.uid),where("completed", "==", true)))
-            }else if (eo.target.value === "c") {
-              setSelectedValue("c");
-              setData(query(collection(db, user.uid),where("completed", "==", false),orderBy("completed")))
-            }
-          }
-          } id="options">
+          <select
+            value={selectedValue}
+            onChange={(eo) => {
+              console.log(eo.target.value);
+              if (eo.target.value === "a") {
+                setfullOpacity(false);
+                setSelectedValue("a");
+                setData(allTasks);
+              } else if (eo.target.value === "b") {
+                setSelectedValue("b");
+                setData(
+                  completedTasks
+                );
+              } else if (eo.target.value === "c") {
+                setSelectedValue("c");
+                setData(
+                  notCompletedTasks
+                );
+              }
+            }}
+            id="options"
+          >
+            
             <option value="a">All Tasks</option>
             <option value="b">Completed</option>
             <option value="c">Not Completed</option>
           </select>
 
-  { selectedValue === "a" && <div>
-          <button
-            style={{ opacity: fullOpacity ? 0.5 : 1 }}
-            onClick={() => {
-              setfullOpacity(true);
-              setData(
-                query(
-                  collection(db, user.uid),
-                  orderBy("id", "desc"),
-                  limit(3),
-                ),
-              );
-            }}
-          >
-            {" "}
-            Newest first
-          </button>
-          <button
-            style={{ opacity: fullOpacity ? 1 : 0.5 }}
-            onClick={() => {
-              setfullOpacity(false);
-              setData(
-                query(collection(db, user.uid), orderBy("id", "asc"), limit(3)),
-              );
-            }}
-          >
-            Oldest first
-          </button>
-      </div>}
+          {selectedValue === "a" && (
+            <div>
+              <button
+                style={{ opacity: fullOpacity ? 0.5 : 1 }}
+                onClick={() => {
+                  setfullOpacity(true);
+                  setData(
+                    query(
+                      collection(db, user.uid),
+                      orderBy("id", "desc"),
+                      limit(3),
+                    ),
+                  );
+                }}>
+                Newest first
+              </button>
+              <button
+                style={{ opacity: fullOpacity ? 1 : 0.5 }}
+                onClick={() => {
+                  setfullOpacity(false);
+                  setData(
+                    query(
+                      collection(db, user.uid),
+                      orderBy("id", "asc"),
+                      limit(3),
+                    ),
+                  );
+                }}
+              >
+                Oldest first
+              </button>
+            </div>
+          )}
         </section>
 
         <section className="all-task">
