@@ -52,15 +52,15 @@ export default function SubTaskSection({
         <ul>
           {value.data().details.map((item, index) => {
             return (
-              <>
-                <li className="card-task flex" key={index}>
+              
+                <li  className="card-task flex" key={index}>
                   <p> {item} </p>
                   <i
                     onClick={async () => await trashIcon(item)}
                     className="fas fa-trash"
                   ></i>
                 </li>
-              </>
+              
             );
           })}
         </ul>
@@ -93,10 +93,16 @@ export default function SubTaskSection({
               <button
                 className="add"
                 onClick={async (e) => {
-                    e.preventDefault();
+                  e.preventDefault();
+                  if (subTask.trim() === "") {
+                    return alert("Please enter a sub task");
+                  }
+                  
                   await updateDoc(doc(db, user.uid, id), {
                     details: arrayUnion(subTask),
                   });
+                  setSubTask("");
+                  setShowAddTask(false);
                 
                 }}
               >
@@ -105,7 +111,7 @@ export default function SubTaskSection({
             
           </form>
         )}
-        <div>
+        <div className="add-more">
           <button
             className="add-more-btn mt"
             onClick={() => {

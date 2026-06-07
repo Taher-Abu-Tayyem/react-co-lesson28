@@ -280,4 +280,9 @@ height: 100%;
 flex-direction: column;
 justify-content: center;
 }
-   
+
+.edit-task .add-more{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
