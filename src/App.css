@@ -179,7 +179,7 @@ section {
            =========================================== */
 .header {
 	position: fixed;
-	top: 0;
+	top: 0px;
 	left: 0;
 	right: 0;
 	background-color: rgba(250, 252, 253, 0.95);
@@ -231,6 +231,34 @@ section {
 	background-color: var(--color-text);
 	margin: 5px 0;
 	transition: 0.2s;
+}
+ul.drop-menu {
+display: none;
+border: 1px solid #dce6ea;
+position: absolute;
+top: 50px;
+width: 120px;
+list-style:none;
+background-color: rgb(177, 173, 173);
+border-radius: 3px;
+}
+li.lang:hover ul.drop-menu {
+  display: block;
+}
+ul.drop-menu li {
+  padding: 6px 12px;
+  text-align: start;
+  border-bottom: 1px solid #dce6ea;
+  font-size: 14px;
+  transition: 0.3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+ul.drop-menu li:hover {
+  background-color: #86d8f9;
+  font-size: 15px;
+  cursor: pointer;
 }
 
 /* ===========================================
